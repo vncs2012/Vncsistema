@@ -13,9 +13,6 @@
  */
 class Factory
 {
-
-    //put your code here
-
     private $ar_classes = array();
     public static $instance;
 

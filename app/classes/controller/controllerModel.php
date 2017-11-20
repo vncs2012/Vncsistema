@@ -1,19 +1,25 @@
 <?php
 if(isset($_REQUEST['arquivo'])){
+   if(file_exists('../../../autoload.php')){
+    include_once "../../../autoload.php";
+   }
+   var_dump( include_once "../../../autoload.php");
     $no_arquivo = $_REQUEST["arquivo"];
     $acao=$_REQUEST["acao"];
-    // $class = new $no_arquivo();
+    $class = Factory::obj()->criar("$no_arquivo");
+    
 }else{
     $pg = new paginas();
     $pagina = $pg->getPagina($_REQUEST['p']);
     $no_arquivo=$pagina->no_arquivo;
     $tc = Factory::obj()->criar('TableCreator');
+    $class = Factory::obj()->criar("$no_arquivo");
     $codigo = $_REQUEST['cd'];
     @$acao = $_REQUEST['a'];
 }
-// var_dump($class);
-// $class = Factory::obj()->criar("$no_arquivo");
 print"switch";
+var_dump($class);
+
 switch (@$acao) {
     case "listar":
         $listagem = $class->listagem();

@@ -20,8 +20,8 @@ foreach ($listagem as $example) {
     $new->value = $example->cd_penalidade;
     $opcao .= $new->criarHtml();
 
-    $tc->add("no_penalidade", $example->no_penalidade);
-    $tc->add("vl_penalidade", $example->vl_penalidade);
+    $tc->add("Penalidade", $example->no_penalidade);
+    $tc->add("Valor", $example->vl_penalidade);
     $tc->add("Opções", $opcao);
 }
 

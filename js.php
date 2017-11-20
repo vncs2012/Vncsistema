@@ -59,6 +59,7 @@
 <script src="app/assets/vendors/pdfmake/build/vfs_fonts.js"></script>
 
 <script src="app/assets/build/js/custom.min.js"></script>
+<script src="app/assets/script/util.js"></script>
 <script src="app/assets/script/controller.js"></script>
 
 

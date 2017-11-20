@@ -10,18 +10,19 @@
 
     $new = Factory::obj()->criar("compomentesInput");
     $new->name = "pedido[no_penalidade]";
-    $new->label = "no_penalidade";
+    $new->label = "Penalidade";
     $new->type = "text";
     $conteudo .= $new->criarHtml();
     
     $new = Factory::obj()->criar("compomentesInput");
     $new->name = "pedido[vl_penalidade]";
-    $new->label = "vl_penalidade";
+    $new->label = "Valor";
+    $new->id = "moeda";
     $new->type = "text";
     $conteudo .= $new->criarHtml();
     
 $new = Factory::obj()->criar("compomentesForm");
-// $new->action = "?r={$_REQUEST['r']}&p={$_REQUEST['r']}&a=incluir";
+// $new->action = "?r=".$_REQUEST['r']."&p=".$_REQUEST['p']."&a=incluir";
 $new->action = 'sub("penalidade","incluir")';
 $new->conteudo = $conteudo;
 $form = $new->criarHtml();

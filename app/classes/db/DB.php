@@ -19,7 +19,7 @@ class DB
     {
         if (!isset(self::$instance)) {
             try {
-                self::$instance = new PDO('mysql:host=localhost;port=5432;dbname=vncsistema', 'root', 'vncs');
+                self::$instance = new PDO('mysql:host=localhost;port=5432;dbname=vncsistema', 'root', '@ipe789@');
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
             } catch (PDOException $e) {
