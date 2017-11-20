@@ -1,0 +1,21 @@
+<div class='form-group'>
+  <div class='col-md-12 col-sm-12 col-xs-12'>
+  <label class='control-label'><?php print $this->label ?></label>
+</div>
+  <div class='col-md-12 col-sm-12 col-xs-12'>
+    <select name='<?php print $this->name?>' <?php print $this->class ;?>>
+      <?php
+          if ($this->type == 'select') {
+              print '<option value=""></option>';
+          }
+      $cd = $this->cd;
+      $no = $this->value;
+      foreach ($this->valor as $key => $v) {
+          ?>
+      <option value='<?php print $v->$cd; ?>'><?php print $v->$no; ?></option>
+      <?php
+      }
+      ?>
+    </select>
+  </div>
+</div>
