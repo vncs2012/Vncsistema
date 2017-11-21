@@ -1,25 +1,23 @@
 <?php
-if(isset($_REQUEST['arquivo'])){
-   if(file_exists('../../../autoload.php')){
-    include_once "../../../autoload.php";
-   }
-   var_dump( include_once "../../../autoload.php");
-    $no_arquivo = $_REQUEST["arquivo"];
-    $acao=$_REQUEST["acao"];
-    $class = Factory::obj()->criar("$no_arquivo");
-    
+
+if(isset($_POST['arquivo'])){
+
+    $no_arquivo = $_POST["arquivo"];
+    $acao=$_POST["acao"];
+    $rotina =$_POST['rotina'];
+    $modulo =$_POST['modulo'];
+    include_once '../../../includeController.php';
 }else{
     $pg = new paginas();
     $pagina = $pg->getPagina($_REQUEST['p']);
     $no_arquivo=$pagina->no_arquivo;
     $tc = Factory::obj()->criar('TableCreator');
-    $class = Factory::obj()->criar("$no_arquivo");
     $codigo = $_REQUEST['cd'];
     @$acao = $_REQUEST['a'];
 }
-print"switch";
-var_dump($class);
+$listagem = "";
 
+$class = Factory::obj()->criar("$no_arquivo");
 switch (@$acao) {
     case "listar":
         $listagem = $class->listagem();
@@ -29,9 +27,8 @@ switch (@$acao) {
         include_once "app/systema/view/incluir/{$no_arquivo}.php";
         break;
     case "incluir":
-    print"entrou";
         $class->_incluir();
-        return "ok";
+    //    util::redirecionar("?r={$modulo}&p={$rotina}&a=listar");
         break;
     case "formAlterar":
         $umRegisto = $class->unicoRegisto();

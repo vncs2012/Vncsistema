@@ -45,7 +45,7 @@ function excluir(arquivo, codigo) {
         }
     
     }
-    function sub(arquivo, acao) {
+    function sub(arquivo, acao,rotina,modulo) {
        
         $("#load").show();
         var Self = this;
@@ -58,6 +58,9 @@ function excluir(arquivo, codigo) {
         var formData = new FormData($("#form")[0]);
         formData.append("acao", acao);
         formData.append("arquivo", arquivo);
+        formData.append("rotina", rotina);
+        formData.append("modulo", modulo);
+
 
         $.ajax({
             type: 'POST',
@@ -68,8 +71,8 @@ function excluir(arquivo, codigo) {
             contentType: false,
             processData: false
         }).done(function (html) {
-            console.log(html);
-    //        var res = JSON.parse(html);
+            console.log(html.success);
+        //    var res = JSON.parse(html);
             if (html.hasOwnProperty("erro")) {
                 if (acao === 'Incluir') {
                     modalRedirecionarError("Erro ao salvar");
@@ -78,14 +81,16 @@ function excluir(arquivo, codigo) {
                     modalRedirecionarError("Erro ao alterar");
                 }
             } else {
-                if (html.success === "ok") {
-                    if (acao == 'Incluir') {
-                        modalRedirecionarSuccess("Salvo com sucesso");
+                if (html.success == 'ok') {
+                    console.log("Html Sucesso");
+                    if (acao == 'incluir') {
+                        modalRedirecionarSuccess("Salvo com sucesso",rotina,modulo);
                     }
-                    if (acao == 'Alterar') {
+                    if (acao == 'alterar') {
                         modalRedirecionarSuccess("Alterado com Sucesso");
                     }
                 } else {
+                    console.log("EEntrou ok")
                     modal(html);
                 }
             }
@@ -114,11 +119,11 @@ function excluir(arquivo, codigo) {
         $('.modal-body').html(msg);
         $('#myModal').modal('show');
     }
-    function modalRedirecionarSuccess(msg) {
+    function modalRedirecionarSuccess(msg,rotina,modulo) {
         $('.modal-body').html("<img src='imagens/alert/success.svg' width='40px'> "+msg);
         $('#myModal').modal('show');
         $('#myModal').on('hidden.bs.modal', function () {
-            location.href = "?index.php&pagina=" + getUrlVars()['pagina'] + "&acao=listar";
+            location.href = "?r=" +modulo+ "&p="+rotina+"&a=listar";
         })
     }
     function modalRedirecionarError(msg) {

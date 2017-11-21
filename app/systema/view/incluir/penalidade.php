@@ -23,7 +23,7 @@
     
 $new = Factory::obj()->criar("compomentesForm");
 // $new->action = "?r=".$_REQUEST['r']."&p=".$_REQUEST['p']."&a=incluir";
-$new->action = 'sub("penalidade","incluir")';
+$new->action = 'sub("'.$route->no_arquivo.'","incluir","'.$route->cd_rotina.'","'.$route->cd_modulo.'")';
 $new->conteudo = $conteudo;
 $form = $new->criarHtml();
 print $form;

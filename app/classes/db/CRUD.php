@@ -29,7 +29,7 @@ class CRUD extends DB {
             if ($stmt->execute()) {
                 return self::lastInsertId();
             } else {
-                print 'algum problema';
+                echo json_encode("erro");
             }
         } catch (Exception $ex) {
             print "</br>" . $ex;
@@ -107,21 +107,6 @@ class CRUD extends DB {
 
         if ($stmt->execute()) {
             return $stmt->fetch();
-        }
-    }
-
-    public static function Paginacao($limite = 10) {
-        //seleciona o total de registros
-        $sql_Total = "SELECT " . self::$primayKey . "  FROM " . self::$tabela;
-
-        try {
-            $stmt = self::prepare($sql_Total);
-            $stmt->execute();
-            $query_count = $stmt->rowCount(PDO::FETCH_ASSOC);
-            $qtdPag = ceil($query_count / $limite);
-            return $qtdPag;
-        } catch (PDOexception $error_Total) {
-            echo 'Erro ao retornar os Dados. ' . $error_Total->getMessage();
         }
     }
 
