@@ -1,26 +1,18 @@
-<?php
-// print_r($info_table[0]->column_name);
-foreach ($info_table as $key => $value) {
-  if(!empty($value->COLUMN_KEY)){
-    $primaryKey = $value->column_name;
-  }
-  $ar_colunas[] = $value->column_name;
-}
-$model ='
+
 <?php
 
 /**
  * Description of teste
  *
  * @author vinicius
- * '.date("d/m/Y H:i:s").'
+ * 22/11/2017 12:02:57
  */
-class '.$no_arquivo.' extends CRUD implements DBbase {
+class marca_peneu extends CRUD implements DBbase {
 
     public function __construct() {
         self::$arValores["pedido"] = $this->getDados();
-        self::$tabela = "'.$no_tabela.'";
-        self::$primayKey = "'.$primaryKey.'";
+        self::$tabela = "tb_marca_peneu";
+        self::$primayKey = "cd_marca_peneu";
     }
 
     public function _alterar($cd) {
@@ -49,27 +41,18 @@ class '.$no_arquivo.' extends CRUD implements DBbase {
     }
 
     public function listagem() {
-        $elemente = "'.implode(",",$ar_colunas).'";
+        $elemente = "cd_marca_peneu,no_marca_peneu,bo_ativo";
         $conteudo = self::selectAll("", $elemente);
         return $conteudo;
     }
 
     public function unicoRegisto() {
-        return self::umResgisto("", "'.implode(",",$ar_colunas).'", util::getUrl("cd"));
+        return self::umResgisto("", "cd_marca_peneu,no_marca_peneu,bo_ativo", util::getUrl("cd"));
     }
 
     function getDados() {
         $pedido = $_POST["pedido"];
+        var_dump();
         return $pedido;
     }
 }
-';
-
-$arquivo_model = fopen("../../app/systema/model/{$no_arquivo}.php","w+");
-if($arquivo_model == false){
-    print "<br />nao foi possivel criar o model";
-}else{
-  print "<br />Arquivo Model/{$no_arquivo}.php criado com sucesso!";
-}
-fwrite($arquivo_model,$model);
-fclose($arquivo_model);

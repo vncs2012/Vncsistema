@@ -6,14 +6,15 @@ if(isset($_POST['arquivo'])){
     $acao=$_POST["acao"];
     $rotina =$_POST['rotina'];
     $modulo =$_POST['modulo'];
+    $codigo=$_POST['codigo'];
     include_once '../../../includeController.php';
 }else{
     $pg = new paginas();
-    $pagina = $pg->getPagina($_REQUEST['p']);
+    $pagina = $pg->getPagina(util::getUrl('r'));
     $no_arquivo=$pagina->no_arquivo;
     $tc = Factory::obj()->criar('TableCreator');
-    $codigo = $_REQUEST['cd'];
-    @$acao = $_REQUEST['a'];
+    $codigo = util::getUrl('cd');
+    @$acao = util::getUrl('a');
 }
 $listagem = "";
 

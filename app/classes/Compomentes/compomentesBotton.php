@@ -20,6 +20,6 @@ class compomentesBotton extends compomentesBase
 //put your code here
     public function criarHtml()
     {
-        return "<a href='?r={$_REQUEST['r']}&p={$_REQUEST['p']}&a=formIncluir' onclick='$this->onclick'><i class='glyphicon glyphicon-plus'></i></a>";
+        return "<a href='?m={$_REQUEST['m']}&r={$_REQUEST['r']}&a=formIncluir' onclick='$this->onclick'><i class='glyphicon glyphicon-plus'></i></a>";
     }
 }

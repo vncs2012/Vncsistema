@@ -29,7 +29,7 @@ $alterar='
  */
 '.implode("",$ar_alterar).'
 $new = Factory::obj()->criar("compomentesForm");
-$new->action = "?r={$_REQUEST['.$aspaSimples.'r'.$aspaSimples.']}&p={$_REQUEST['.$aspaSimples.'r'.$aspaSimples.']}&a=alterar&cd={$_REQUEST['.$aspaSimples.'cd'.$aspaSimples.']}";
+$new->action ='.$aspaSimples.'sub("'.$aspaSimples.'.$route->no_arquivo.'.$aspaSimples.'","alterar","'.$aspaSimples.'.$route->cd_rotina.'.$aspaSimples.'","'.$aspaSimples.'.$route->cd_modulo.'.$aspaSimples.'","'.$aspaSimples.'.util::getUrl("cd").'.$aspaSimples.'")'.$aspaSimples.';
 $new->conteudo = $conteudo;
 $form = $new->criarHtml();
 

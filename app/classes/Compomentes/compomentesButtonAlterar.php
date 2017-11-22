@@ -17,7 +17,7 @@ class compomentesButtonAlterar extends compomentesBase {
 
 //put your code here
     public function criarHtml() {
-        return "<a href='?r={$_REQUEST['r']}&p={$_REQUEST['p']}&cd={$this->value}&a=formAlterar'  class='mdl-button mdl-js-button mdl-button--icon'>
+        return "<a href='?m={$_REQUEST['m']}&r={$_REQUEST['r']}&cd={$this->value}&a=formAlterar'  class='mdl-button mdl-js-button mdl-button--icon'>
   <i class='glyphicon glyphicon-pencil'></i></a>";
     }
 

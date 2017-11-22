@@ -30,6 +30,9 @@ foreach ($listagem as $example) {
     $opcao = $new->criarHtml();
     $new = Factory::obj()->criar("compomentesButtonExcluir");
     $new->value = $example->'.$primaryKey.';
+    $new->no_arquivo = $route->no_arquivo;
+    $new->cd_rotina = $route->cd_rotina;
+    $new->cd_modulo = $route->cd_modulo;
     $opcao .= $new->criarHtml();
 
 '.implode("\n",$ar_colunasListar).'

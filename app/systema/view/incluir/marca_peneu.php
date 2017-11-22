@@ -5,19 +5,12 @@
  * Description of teste
  *
  * @author vinicius
- * 16/11/2017 15:11:55
+ * 22/11/2017 12:02:57
  */
 
     $new = Factory::obj()->criar("compomentesInput");
-    $new->name = "pedido[no_penalidade]";
-    $new->label = "Penalidade";
-    $new->type = "text";
-    $conteudo .= $new->criarHtml();
-    
-    $new = Factory::obj()->criar("compomentesInput");
-    $new->name = "pedido[vl_penalidade]";
-    $new->label = "Valor";
-    $new->id = "moeda";
+    $new->name = "pedido[no_marca_peneu]";
+    $new->label = "Marca";
     $new->type = "text";
     $conteudo .= $new->criarHtml();
     
@@ -26,7 +19,6 @@ $new->action = 'sub("'.$route->no_arquivo.'","incluir","'.$route->cd_rotina.'","
 $new->conteudo = $conteudo;
 $form = $new->criarHtml();
 print $form;
-
 /** Exemplo de Seletion option
 $bus = Factory::obj()->criar("pessoa");
 $new = Factory::obj()->criar("compomentesSelect");

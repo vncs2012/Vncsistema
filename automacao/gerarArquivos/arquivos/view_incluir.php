@@ -28,11 +28,10 @@ $incluir='
  */
 '.implode("",$ar_incluir).'
 $new = Factory::obj()->criar("compomentesForm");
-$new->action = "?r={$_REQUEST['.$aspaSimples.'r'.$aspaSimples.']}&p={$_REQUEST['.$aspaSimples.'r'.$aspaSimples.']}&a=incluir";
+$new->action = '.$aspaSimples.'sub("'.$aspaSimples.'.$route->no_arquivo.'.$aspaSimples.'","incluir","'.$aspaSimples.'.$route->cd_rotina.'.$aspaSimples.'","'.$aspaSimples.'.$route->cd_modulo.'.$aspaSimples.'")'.$aspaSimples.';
 $new->conteudo = $conteudo;
 $form = $new->criarHtml();
 print $form;
-
 /** Exemplo de Seletion option
 $bus = Factory::obj()->criar("pessoa");
 $new = Factory::obj()->criar("compomentesSelect");

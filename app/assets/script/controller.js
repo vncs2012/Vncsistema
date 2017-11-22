@@ -1,5 +1,5 @@
-function excluir(arquivo, codigo) {
-    
+function excluir(arquivo,rotina,modulo,cd) {
+        console.log("entrou")
         var excluir = confirm("Deseja excluir esse registro?");
         if (excluir) {
             $("#load").show();
@@ -13,20 +13,21 @@ function excluir(arquivo, codigo) {
             var formData = new FormData();
             formData.append("acao", "excluir");
             formData.append("arquivo", arquivo);
-            formData.append("cd", codigo);
+            formData.append("rotina", rotina);
+            formData.append("modulo", modulo);
+            formData.append("codigo", cd);
     
             jQuery.ajax({
                 type: 'POST',
                 mimeType: "multipart/form-data",
-                url: 'model/acao/controller.php',
+                url: 'app/classes/controller/controllerModel.php',
                 dataType: 'json',
                 data: formData,
                 contentType: false,
                 processData: false
             }).done(function (html) {
                 if (html.success === "ok") {
-                    modalRedirecionarSuccess("Excluido com sucesso");
-                    
+                    modalRedirecionarSuccess("Excluido com sucesso",rotina,modulo);           
                 } else {
                     modalRedirecionarError("Erro ao excluir");
                 }
@@ -45,7 +46,7 @@ function excluir(arquivo, codigo) {
         }
     
     }
-    function sub(arquivo, acao,rotina,modulo) {
+    function sub(arquivo, acao,rotina,modulo,cd='') {
        
         $("#load").show();
         var Self = this;
@@ -60,6 +61,7 @@ function excluir(arquivo, codigo) {
         formData.append("arquivo", arquivo);
         formData.append("rotina", rotina);
         formData.append("modulo", modulo);
+        formData.append("codigo", cd);
 
 
         $.ajax({
@@ -74,23 +76,21 @@ function excluir(arquivo, codigo) {
             console.log(html.success);
         //    var res = JSON.parse(html);
             if (html.hasOwnProperty("erro")) {
-                if (acao === 'Incluir') {
+                if (acao === 'incluir') {
                     modalRedirecionarError("Erro ao salvar");
                 }
-                if (acao === 'Alterar') {
+                if (acao === 'alterar') {
                     modalRedirecionarError("Erro ao alterar");
                 }
             } else {
                 if (html.success == 'ok') {
-                    console.log("Html Sucesso");
                     if (acao == 'incluir') {
                         modalRedirecionarSuccess("Salvo com sucesso",rotina,modulo);
                     }
                     if (acao == 'alterar') {
-                        modalRedirecionarSuccess("Alterado com Sucesso");
+                        modalRedirecionarSuccess("Alterado com Sucesso",rotina,modulo);
                     }
                 } else {
-                    console.log("EEntrou ok")
                     modal(html);
                 }
             }
@@ -120,13 +120,13 @@ function excluir(arquivo, codigo) {
         $('#myModal').modal('show');
     }
     function modalRedirecionarSuccess(msg,rotina,modulo) {
-        $('.modal-body').html("<img src='imagens/alert/success.svg' width='40px'> "+msg);
+        $('.modal-body').html("<img src='imagens/success.gif' width='70px'> "+msg);
         $('#myModal').modal('show');
         $('#myModal').on('hidden.bs.modal', function () {
-            location.href = "?r=" +modulo+ "&p="+rotina+"&a=listar";
+            location.href = "?m=" +modulo+ "&r="+rotina+"&a=listar";
         })
     }
     function modalRedirecionarError(msg) {
-        $('.modal-body').html("<img src='imagens/alert/error.svg' width='40px'> "+msg);
+        $('.modal-body').html("<img src='imagens/erro.gif' width='70px'> "+msg);
         $('#myModal').modal('show');
      }

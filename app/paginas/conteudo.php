@@ -1,7 +1,7 @@
 <?php
     // $util = new util();
 $r = (!empty(util::getUrl('r'))) ? util::getUrl('r') :0;
-$modulo = (!empty(util::getUrl('p'))) ? util::getUrl('p') :0;;
+$modulo = (!empty(util::getUrl('m'))) ? util::getUrl('m') :0;;
 // print $rotina."->".$modulo;
 $rotina = new paginas();
 $route=$rotina->getPagina($r);

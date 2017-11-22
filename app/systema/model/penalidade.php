@@ -16,7 +16,7 @@ class penalidade extends CRUD implements DBbase {
     }
 
     public function _alterar($cd) {
-       $resu= self::alterar($cd);
+       $resu=self::alterar($cd);
           if($resu){
             self::commit();
             echo json_encode(array("success"=>"ok"));

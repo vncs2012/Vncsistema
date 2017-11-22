@@ -64,7 +64,7 @@ class CRUD extends DB {
             if ($stmt->execute()) {
                 return true;
             } else {
-                print 'algum problema';
+                echo json_encode("erro");
             }
         } catch (Exception $ex) {
             print '' . $ex;
@@ -79,7 +79,7 @@ class CRUD extends DB {
             $stmt = self::prepare(self::$sql);
             if ($stmt->execute()) {
                 self::commit();
-                return;
+                echo json_encode(array("success"=>"ok"));
             } else {
                 print 'algum problema';
             }
@@ -103,7 +103,6 @@ class CRUD extends DB {
     public static function umResgisto($join = null, $elemento = "*", $cd = null) {
         self::$sql = "select {$elemento} from " . self::$tabela . " where " . self::$primayKey . " = {$cd}";
         $stmt = self::prepare(self::$sql);
-        print self::$sql;
 
         if ($stmt->execute()) {
             return $stmt->fetch();

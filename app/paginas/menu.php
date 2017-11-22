@@ -19,7 +19,7 @@
             <?php
           foreach ($pg as $pagina) {
               ?>
-              <li><a href="?r=<?php print $pagina->cd_rotina; ?>&p=<?php print $pagina->cd_rotina; ?>&a=listar"><?=$pagina->no_rotina?></a></li>
+              <li><a href="?m=<?php print $pagina->cd_modulo; ?>&r=<?php print $pagina->cd_rotina; ?>&a=listar"><?=$pagina->no_rotina?></a></li>
           <?php
           }
               print "</ul></li>";

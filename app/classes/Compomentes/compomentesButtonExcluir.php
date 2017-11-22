@@ -14,11 +14,16 @@
 class compomentesButtonExcluir extends compomentesBase
 {
     public $value = "";
+    public $no_arquivo = "";
+    public $cd_rotina = "";
+    public $cd_modulo = "";
 
 //put your code here
     public function criarHtml()
     {
-        return "<a href='?r={$_REQUEST['r']}&p={$_REQUEST['p']}&cd={$this->value}&a=excluir'  class='mdl-button mdl-js-button mdl-button--icon'>
+        $action = 'excluir("'.$this->no_arquivo.'","'.$this->cd_rotina.'","'.$this->cd_modulo.'","'.$this->value.'")';
+        return "<a onclick='$action' class='mdl-button mdl-js-button mdl-button--icon'>
   <i class='glyphicon glyphicon-minus'></i></a>";
     }
 }
+// $new->action = 'excluir("'.$route->no_arquivo.'","'.$route->cd_rotina.'","'.$route->cd_modulo.'","'.util::getUrl("cd").'")';
