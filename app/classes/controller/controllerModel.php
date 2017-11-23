@@ -29,7 +29,6 @@ switch (@$acao) {
         break;
     case "incluir":
         $class->_incluir();
-    //    util::redirecionar("?r={$modulo}&p={$rotina}&a=listar");
         break;
     case "formAlterar":
         $umRegisto = $class->unicoRegisto();

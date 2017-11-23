@@ -13,12 +13,10 @@ class CRUD extends DB {
     protected static $arErros;
     protected static $sql = "";
 
-    public static function inserir($bo = true) {
+    public static function inserir($bo = true,$commit = true) {
         $arColunas = self::processarPedido();
         try {
-            if ($bo) {
-                self::beginTransaction();
-            }
+            self::transacao($bo);
             self::$sql = "insert into " . self::$tabela . " (" . implode(",", $arColunas) . ") values(:" . implode(",:", $arColunas) . ")";
             $stmt = self::prepare(self::$sql);
             foreach (self::$arValores['pedido'] as $key => $valores) {
@@ -27,6 +25,7 @@ class CRUD extends DB {
                 }
             }
             if ($stmt->execute()) {
+                self::commitSucesso($commit);
                 return self::lastInsertId();
             } else {
                 echo json_encode("erro");
@@ -36,10 +35,10 @@ class CRUD extends DB {
         }
     }
 
-    public static function alterar($cd) {
+    public static function alterar($cd,$bo=true,$commit=true) {
         $arColunas = self::processarPedido();
         try {
-            self::beginTransaction();
+            self::transacao($bo);
             self::$sql = "UPDATE " . self::$tabela . " SET ";
             $tam = count($arColunas);
             foreach ($arColunas as $value) {
@@ -62,7 +61,8 @@ class CRUD extends DB {
             // $stmt->debugDumpParams();
             // print"</pre>";
             if ($stmt->execute()) {
-                return true;
+                $status=self::commitSucesso($commit);
+                return $status;
             } else {
                 echo json_encode("erro");
             }
@@ -71,17 +71,16 @@ class CRUD extends DB {
         }
     }
 
-    public static function exluir($cd) {
+    public static function exluir($cd,$bo=true,$commit=true) {
         try {
-            self::beginTransaction();
+            self::transacao($bo);
             self::$sql = "DELETE FROM " . self::$tabela . " WHERE " . self::$primayKey . " = " . $cd;
 
             $stmt = self::prepare(self::$sql);
             if ($stmt->execute()) {
-                self::commit();
-                echo json_encode(array("success"=>"ok"));
+                self::commitSucesso($commit);
             } else {
-                print 'algum problema';
+                echo json_encode("erro");
             }
         } catch (Exception $ex) {
             
@@ -149,7 +148,7 @@ class CRUD extends DB {
         if ($boFk) {
             self::commit();
         } else {
-            print "erro";
+            echo json_encode("erro");
         }
     }
 
@@ -164,8 +163,23 @@ class CRUD extends DB {
         if ($stmt->execute()) {
             
         } else {
-            print "Erro";
+            echo json_encode("erro");
         }
+    }
+    public function commitSucesso($commit){
+        if($commit){
+            self::commit();
+            echo json_encode(array("success"=>"ok"));
+            return true;
+        }
+        return false;
+    }
+    public function transacao($commit){
+        if($commit){
+        self::beginTransaction();
+        return true;
+    }
+    return false;
     }
 
 }

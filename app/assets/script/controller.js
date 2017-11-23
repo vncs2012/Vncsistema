@@ -120,13 +120,39 @@ function excluir(arquivo,rotina,modulo,cd) {
         $('#myModal').modal('show');
     }
     function modalRedirecionarSuccess(msg,rotina,modulo) {
-        $('.modal-body').html("<img src='imagens/success.gif' width='70px'> "+msg);
-        $('#myModal').modal('show');
-        $('#myModal').on('hidden.bs.modal', function () {
+        $.notify(msg,{ globalPosition: 'top center', className: 'success' });
+        window.setInterval(function(){
             location.href = "?m=" +modulo+ "&r="+rotina+"&a=listar";
-        })
+          }, 1800)
+        // var svg = '<div class="row"><div class="col-md-2" style="padding-right: 0px;"><div class="loader"><svg viewBox="25 25 50 50"><circle class="loader__background" cx="50" cy="50" r="20" stroke-width="3"/><circle class="loader__rotation" cx="50" cy="50" r="20" fill="none" stroke-width="4"/><path class="loader__path" d="m48,58l11,-16" stroke-dasharray="23" stroke-dashoffset="23"/><path class="loader__path" d="m48,58l-8,-6" stroke-dasharray="10" stroke-dashoffset="10"/></svg></div> </div><div class="col-md-9"><span class="msg_svg">'+msg+'</span></div></div>';        
+        // sucessoSVG();
+        // $('.modal-body').html(svg);
+        // $('#myModal').modal('show');
+        // $('#myModal').on('hidden.bs.modal', function () {
+            // location.href = "?m=" +modulo+ "&r="+rotina+"&a=listar";
+        // })
     }
     function modalRedirecionarError(msg) {
-        $('.modal-body').html("<img src='imagens/erro.gif' width='70px'> "+msg);
-        $('#myModal').modal('show');
+        $.notify(msg,{ globalPosition: 'top center', className: 'error' });
+     }
+
+     function sucessoSVG(){
+        var loader = document.getElementsByClassName('loader')
+        
+        document.addEventListener('click', function(){
+          toggleClass('done', loader[0])
+        })
+        
+        window.setInterval(function(){
+          toggleClass('done', loader[0])
+        }, 1000)
+        
+        function toggleClass(toggleClassName, target) {
+          var currentClassName = ' ' + target.className + ' '
+          if (~currentClassName.indexOf(' ' + toggleClassName + ' ')) {
+            target.className = currentClassName.replace(' ' + toggleClassName + ' ', ' ').trim()
+          } else {
+            target.className = (currentClassName + ' done').trim()
+          }
+        }
      }

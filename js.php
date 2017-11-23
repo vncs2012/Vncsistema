@@ -61,6 +61,7 @@
 <script src="app/assets/build/js/custom.min.js"></script>
 <script src="app/assets/script/util.js"></script>
 <script src="app/assets/script/controller.js"></script>
+<script src="app/assets/script/notify.min.js"></script>
 
 
 <!-- bootstrap-daterangepicker -->
@@ -68,7 +69,7 @@
   $(document).ready(function() {
 
     var cb = function(start, end, label) {
-      console.log(start.toISOString(), end.toISOString(), label);
+      // console.log(start.toISOString(), end.toISOString(), label);
       $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     };
 

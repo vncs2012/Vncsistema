@@ -16,11 +16,7 @@ class marca_peneu extends CRUD implements DBbase {
     }
 
     public function _alterar($cd) {
-       $cd =self::alterar($cd);
-       if($cd){
-            self::commit();
-            echo json_encode(array("success"=>"ok"));
-       }
+       self::alterar($cd);
     }
 
     public function _excluir($cd) {
@@ -29,10 +25,6 @@ class marca_peneu extends CRUD implements DBbase {
 
     public function _incluir() {
        $cd = self::inserir();
-        if (is_numeric($cd)) {
-            self::commit();
-            echo json_encode(array("success"=>"ok"));
-        }
     }
 
     public function infoDados($cd = NULL) {
@@ -52,7 +44,6 @@ class marca_peneu extends CRUD implements DBbase {
 
     function getDados() {
         $pedido = $_POST["pedido"];
-        var_dump();
         return $pedido;
     }
 }

@@ -59,5 +59,6 @@ class penalidade extends CRUD implements DBbase {
         return $pedido;
     }
 }
+
 // $arFk = self::processarFk("cd_grade", "cd_atividade", $cd, self::$arValores['pedido']['mutiplo']);
 // self::inserirFk("tb_grade_atividade", $arFk);
