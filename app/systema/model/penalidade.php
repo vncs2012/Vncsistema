@@ -17,10 +17,6 @@ class penalidade extends CRUD implements DBbase {
 
     public function _alterar($cd) {
        $resu=self::alterar($cd);
-          if($resu){
-            self::commit();
-            echo json_encode(array("success"=>"ok"));
-           }
     }
 
     public function _excluir($cd) {
@@ -29,10 +25,6 @@ class penalidade extends CRUD implements DBbase {
 
     public function _incluir() {
         $cd = self::inserir();
-        if (is_numeric($cd)) {
-            self::commit();
-            echo json_encode(array("success"=>"ok"));
-        }
     }
 
     public function pag() {
