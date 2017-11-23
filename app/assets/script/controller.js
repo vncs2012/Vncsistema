@@ -27,7 +27,7 @@ function excluir(arquivo,rotina,modulo,cd) {
                 processData: false
             }).done(function (html) {
                 if (html.success === "ok") {
-                    modalRedirecionarSuccess("Excluido com sucesso",rotina,modulo);           
+                    modalRedirecionarSuccess("excluir",rotina,modulo);           
                 } else {
                     modalRedirecionarError("Erro ao excluir");
                 }
@@ -84,12 +84,8 @@ function excluir(arquivo,rotina,modulo,cd) {
                 }
             } else {
                 if (html.success == 'ok') {
-                    if (acao == 'incluir') {
-                        modalRedirecionarSuccess("Salvo com sucesso",rotina,modulo);
-                    }
-                    if (acao == 'alterar') {
-                        modalRedirecionarSuccess("Alterado com Sucesso",rotina,modulo);
-                    }
+                        modalRedirecionarSuccess(acao,rotina,modulo);
+                   
                 } else {
                     modal(html);
                 }
@@ -119,11 +115,11 @@ function excluir(arquivo,rotina,modulo,cd) {
         $('.modal-body').html(msg);
         $('#myModal').modal('show');
     }
-    function modalRedirecionarSuccess(msg,rotina,modulo) {
-        $.notify(msg,{ globalPosition: 'top center', className: 'success' });
-        window.setInterval(function(){
-            location.href = "?m=" +modulo+ "&r="+rotina+"&a=listar";
-          }, 1800)
+    function modalRedirecionarSuccess(evento,rotina,modulo) {
+        // $("#info-cadastro").notify(msg,{ globalPosition: 'top center', className: 'success' });
+        // window.setInterval(function(){
+            location.href = "?m=" +modulo+ "&r="+rotina+"&a=listar&e="+evento;
+        //   }, 0)
         // var svg = '<div class="row"><div class="col-md-2" style="padding-right: 0px;"><div class="loader"><svg viewBox="25 25 50 50"><circle class="loader__background" cx="50" cy="50" r="20" stroke-width="3"/><circle class="loader__rotation" cx="50" cy="50" r="20" fill="none" stroke-width="4"/><path class="loader__path" d="m48,58l11,-16" stroke-dasharray="23" stroke-dashoffset="23"/><path class="loader__path" d="m48,58l-8,-6" stroke-dasharray="10" stroke-dashoffset="10"/></svg></div> </div><div class="col-md-9"><span class="msg_svg">'+msg+'</span></div></div>';        
         // sucessoSVG();
         // $('.modal-body').html(svg);

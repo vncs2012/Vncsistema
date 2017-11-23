@@ -9,13 +9,16 @@
             <div class="main_container">
                 <?php include_once 'app/paginas/menu.php';?>
                 <div class="right_col" role="main">
+                
                     <?php include_once 'app/paginas/conteudo.php';?>
+                    
                 </div>
                 <?php include_once 'app/paginas/footer.php';?>
         </div>
       </div>
       <?php include_once "js.php"; ?>
-
+      <?php include_once "app/assets/notify/notify.php"?>
+<!-- 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -33,6 +36,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
+    
     </body>
-</html>
+</html> 

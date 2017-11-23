@@ -25,4 +25,14 @@ class util
         $txt_final = strTr($texto, $filtro);
         return $txt_final;
     }
+    public function notifly($msg){
+    ?>
+        <script>
+        $(document).ready(function() {
+           history.pushState('teste','Titulo de teste','?m=<?=self::getUrl('m')?>&r=<?=self::getUrl('r')?>&a=listar');
+                $.notify("<?=$msg?>",{ globalPosition: 'top center', className: 'success' });
+        });
+        </script>
+    <?php
+    }
 }
